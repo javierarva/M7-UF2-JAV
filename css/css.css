@@ -4,6 +4,9 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Ubuntu', sans-serif;
+}
+
+body {
     color: white;
     background-color: rgb(32, 31, 31);
 }
@@ -18,7 +21,8 @@ h1 {
 
 form {
     width: 100%;
-    height: 20vh;
+    height: auto;
+    padding-bottom: 20px;
 }
 
 .nav {
@@ -47,6 +51,17 @@ main {
     width: 100%;
     height: auto;
     line-height: 25px;
+}
+
+input, select {
+    color: white;
+    background-color: rgb(32, 31, 31);
+    border: solid 1px white;
+}
+
+table, th, td {
+    border: solid 1px white;
+    padding: 5px;
 }
 
 button {

@@ -38,37 +38,6 @@ class QueryBuilder {
         );
     }
 
-    public function auth($email, $passwd):bool {      
-        try {   
-            $statement = $this -> pdo -> prepare('SELECT * FROM users WHERE email=:email LIMIT 1');
-            $statement -> execute([':email'=>$email]);
-            $count = $statement -> rowCount();
-            $row = $statement -> fetchAll(PDO::FETCH_ASSOC);  
-                  
-            if ($count == 1) {       
-                $user = $row[0];
-                //$res = $_POST['passwd'] == $row[0]['passwd'];
-                $res = password_verify($passwd,$user['passwd']);
-                
-                if ($res) {
-                    $_SESSION['uname'] = $user['uname'];
-                    $_SESSION['email'] = $user['email'];
-                    
-                    return true;
-                    
-                } else {
-                    return false;
-                }
-    
-            } else {
-                return false;
-            }
-    
-        } catch (PDOException $e) {
-            return false;
-        }
-    }
-
     public function register($uname, $passwd, $role, $email, $course):bool {
     
         if ($uname != null and $passwd != null and $role != null and $email != null and $course != null) {

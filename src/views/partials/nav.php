@@ -1,22 +1,39 @@
 <div class="nav">
-    <h1 class="title">SCHOOL</h1>
+    <h1 class="title">ESCUELA</h1>
     <nav>
         <ul>
-            <?php if (isset($_SESSION['logged'])): ?>
+            <?php if(isset($_SESSION['logged'])): ?>
             <li>
-                <button><a href="/pages/logout">Logout</a></button>
+                <button onclick="window.location.href='/login/logout'">Logout</button>
+
             </li>
             <?php else: ?>
             <li>
-                <button><a href="/pages/login">Login</a></button>
+                <button onclick="window.location.href='/login'">Login</button>
+
+            </li>
+            <li>
+                <button onclick="window.location.href='/register'">Register</button>
+
             </li>
             <?php endif;?>
+            <?php if(isset($_SESSION['logged'])): ?>
             <li>
-                <button><a href="/pages/register">Register</a></button>
+                <button onclick="window.location.href='/dashboard'">Dashboard</button>
             </li>
             <li>
-                <button><a href="/pages/index">Home</a></button>
+                <button onclick="window.location.href='/manager'">Manager</button>
             </li>
+            <?php else: ?>
+            <li>
+                <button onclick="window.location.href='/index'">Home</button>
+            </li>
+            <?php endif;?>
+            <?php if($_SESSION['role'] == 'admin'): ?>
+            <li>
+                <button onclick="window.location.href='/admin'">Admin Panel</button>
+            </li>
+            <?php endif;?>
         </ul>
     </nav>
 </div>

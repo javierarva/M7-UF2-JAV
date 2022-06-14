@@ -8,10 +8,6 @@ class PagesController {
         return view('index');
     }
 
-    function about() {
-        return view('about');
-    }
-
     function badlogin() {
         return view('badlogin');
     }
@@ -28,12 +24,12 @@ class PagesController {
         return view('register');
     }
 
-    function lists() {
-        return view('lists');
-    }
-
     function tasks() {
         return view('tasks');
+    }
+
+    function manager() {
+        return view('manager');
     }
 
 }

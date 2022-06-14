@@ -25,7 +25,4 @@ class Controller {
         header('Location:'.$location);
     }
 
-    function flash() {
-        Session::unset('error');
-    }
 }

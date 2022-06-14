@@ -2,14 +2,13 @@
 
 <main>
     <h2>Register</h2>
-    <form action="/register/regi" method="post">
+    <form action="/register/register" method="post">
         <input name="email" type="email" placeholder="Email"><br>
-        <input name="uname" type="text" placeholder="Username"><br>
-        <input name="passwd" type="password" placeholder="Password"><br>
-        <input name="course" type="course" placeholder="Course"><br>
+        <input name="username" type="text" placeholder="Username"><br>
+        <input name="password" type="password" placeholder="Password"><br>
         <select name="role">
-            <option>Alumno</option>
-            <option>Profesor</option>
+            <option value="student">Alumno</option>
+            <option value="teacher">Profesor</option>
         </select>
         <button type="submit">Register</button>
     </form>

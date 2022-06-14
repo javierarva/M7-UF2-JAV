@@ -4,22 +4,34 @@ namespace App\Controllers;
 
 use App\Controller;
 use App\Registry;
-use App\Request;
-use App\Session;
 
 class RegisterController extends Controller {
 
-    public function regi() {
+    public function index() {
+        return view('register');
+    }
 
-        //echo "lamamadelamamadelamamadelamama";
-        if (($uname = filter_input(INPUT_POST, 'uname')) != null and ($passwd = filter_input(INPUT_POST, 'passwd')) != null 
-        and ($role = filter_input(INPUT_POST, 'role')) != null and ($email = filter_input(INPUT_POST, 'email')) != null 
-        and ($course = filter_input(INPUT_POST, 'course')) != null) {
-            $register = Registry::get("database")->register($uname, $passwd, $role, $email, $course);
-            $controller = new Controller(new Request, new Session);
-            $controller->redirectTo('pages/dashboard');
-        } else {
-            $controller->redirectTo('pages/badlogin');
+    public function register() {
+
+        if(isset($_POST['username']) && isset($_POST['password']) && isset($_POST['email']) && isset($_POST['role'])) {
+            $user = filter_input(INPUT_POST, 'username');
+            $passwd = filter_input(INPUT_POST, 'password');
+            $role = filter_input(INPUT_POST, 'role');
+            $email = filter_input(INPUT_POST, 'email');
+            $hashedPasswd = password_hash($passwd, PASSWORD_BCRYPT);
+
+            $db = Registry::get('database');
+            
+            try {
+                $statement = $db->query("INSERT INTO users(username, password, email, role) VALUES(?, ?, ?, ?)");
+                $statement->execute([$user, $hashedPasswd, $email, $role]);
+            } catch (\PDOException $e) {
+                echo $e->getMessage();
+            }
+
+            if(LoginController::auth($db, $email, $passwd)) {
+                $this->redirectTo("dashboard");
+            }
         }
     }
 }
