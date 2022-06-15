@@ -80,7 +80,4 @@ class LoginController extends Controller {
         $this->redirectTo("index");
     }
 
-    public function badLogin() {
-        return view('badlogin');
-    }
 }

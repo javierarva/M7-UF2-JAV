@@ -39,8 +39,11 @@ CREATE TABLE `task` (
   `taskId` int(11) NOT NULL AUTO_INCREMENT,
   `listId` int(11) NOT NULL,
   `taskName` varchar(50) NOT NULL,
+  `userId` int(11) NOT NULL,
   PRIMARY KEY (`taskId`),
-  KEY `FK_tasks` (`listId`),
-  CONSTRAINT `FK_tasks` FOREIGN KEY (`listId`) REFERENCES `list` (`listId`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `listId` (`listId`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `FK_users_task` FOREIGN KEY (`userId`) REFERENCES `users` (`userId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_tasks_task` FOREIGN KEY (`listId`) REFERENCES `list` (`listId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 

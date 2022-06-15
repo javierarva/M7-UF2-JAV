@@ -7,7 +7,7 @@ use App\Registry;
 
 class ManagerController extends Controller {
 
-    function index() {
+    public function index() {
         $user = $_SESSION['user']['userId'];
         $db = Registry::get('database');
 
@@ -38,9 +38,9 @@ class ManagerController extends Controller {
         return view('manager', ['resultTeacher' => $resultTeacher, 'resultStudent' => $resultStudent, 'resultSubject' => $resultSubject]);
     }
 
-    function tasksEdit() {
+    public function tasksEdit() {
 
-        if(isset($_POST['taskName'])) {
+        if(isset($_POST['taskName']) && isset($_POST['taskId'])) {
             $taskName = filter_input(INPUT_POST, 'taskName');
             $taskId = filter_input(INPUT_POST, 'taskId');
             $db = Registry::get('database');

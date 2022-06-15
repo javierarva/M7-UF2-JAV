@@ -1,6 +1,6 @@
 <?php require('partials/head.php');?>
 
-<main>
+<main style="margin-left:20px;">
     <h2>Dashboard</h2>
     <br>
     <div>
@@ -11,29 +11,47 @@
     <br>
 
     <h3>Todas tus listas:</h3>
-    <ul>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre de la lista</th>
+        </tr>
         <?php foreach($lists as $list) { ?>
-            <li><?= $list; ?></li>
+            <tr>
+                <td><?= $list->listId; ?></td>
+                <td><?= $list->listName; ?></td>
+            </tr>
         <?php } ?>
-    </ul>
+    </table>
 
-    <h3>Todas las tareas:</h3>
-    <ul>
+    <br><br>
+
+    <h3>Todas tus tareas:</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre de la tarea</th>
+        </tr>
         <?php foreach($tasks as $task) { ?>
-            <li><?= $task; ?></li>
+            <tr>
+                <td><?= $task->taskId; ?></td>
+                <td><?= $task->taskName; ?></td>
+            </tr>
         <?php } ?>
-    </ul>
+    </table>
 
-    <h3>Crear una lista</h3>
-    <form action="/dashboard/listsCreate" method="post">
+    <br><br>
+
+    <h3>Crear una lista:</h3>
+    <form action="dashboard/listsCreate" method="post">
         <input type="text" name="listName" placeholder="Nombre de la lista"><br>
         <button type="submit">Crear lista</button>
     </form>
 
-    <h3>Crear una tarea</h3>
-    <form action="/dashboard/tasksCreate" method="post">
+    <h3>Crear una tarea:</h3>
+    <form action="dashboard/tasksCreate" method="post">
         <input type="text" name="taskName" placeholder="Nombre de la tarea"><br>
-        <input type="text" name="chosenList" placeholder="Nombre de la lista"><br>
+        <input type="text" name="listId" placeholder="ID de la lista"><br>
         <button type="submit">Crear tarea</button>
     </form>
 
