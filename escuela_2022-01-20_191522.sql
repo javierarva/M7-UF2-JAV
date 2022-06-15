@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS `escuela`;
+
 CREATE TABLE `course` (
   `courseId` int(10) NOT NULL AUTO_INCREMENT,
   `courseName` varchar(255) NOT NULL,
